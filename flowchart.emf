@@ -1,0 +1,41 @@
+@namespace(uri="flwochart", prefix="flowchart")
+package flowchart;
+
+class Entity {
+	attr String name;
+}
+
+abstract class Feature {
+	!ordered ref Entity[*] entity;
+}
+
+class Attribute extends Feature {
+	attr String name;
+}
+
+class Reference extends Feature {
+}
+
+class Page {
+
+	@"http://www.eclipse.org/OCL/Collection"(nullFree="false")
+	!ordered val Content[*]#page contents;
+}
+
+abstract class Content {
+	ref Page#contents page;
+}
+
+abstract class D_Content extends Content {
+	!ordered ref Entity[*] entity;
+}
+
+class Static_Content extends Content {
+}
+
+class Index extends D_Content {
+}
+
+class Individual extends D_Content {
+}
+

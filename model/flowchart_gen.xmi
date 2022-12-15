@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="ASCII"?>
+<flowchart:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:flowchart="flwochart">
+  <steps xsi:type="flowchart:SpeakAction" text="Welcome to Evil Bank" outgoing="//@transitions.0"/>
+  <steps xsi:type="flowchart:InputAction" text="Please enter your account number" incoming="//@transitions.1"/>
+  <steps xsi:type="flowchart:Decision" text="Are you an existing customer?" outgoing="//@transitions.1" incoming="//@transitions.0"/>
+  <transitions from="//@steps.0" to="//@steps.2"/>
+  <transitions from="//@steps.2" to="//@steps.1"/>
+</flowchart:Model>

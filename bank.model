@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="ASCII"?>
+<flowchart:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:flowchart="flwochart" xmi:id="_LgoVIGhwEeqw2aIxlm854Q">
+  <steps xsi:type="flowchart:SpeakAction" xmi:id="_tLjXoGhwEeqw2aIxlm854Q" text="Welcome to Evil Bank" outgoing="_j5Qa8GhyEeqw2aIxlm854Q"/>
+  <steps xsi:type="flowchart:InputAction" xmi:id="_k7qTIGhyEeqw2aIxlm854Q" text="Please enter your account number" incoming="_uSYx8GhyEeqw2aIxlm854Q"/>
+  <steps xsi:type="flowchart:Decision" xmi:id="_o3100GhyEeqw2aIxlm854Q" text="Are you an existing customer?" outgoing="_uSYx8GhyEeqw2aIxlm854Q" incoming="_j5Qa8GhyEeqw2aIxlm854Q"/>
+  <transitions xmi:id="_j5Qa8GhyEeqw2aIxlm854Q" from="_tLjXoGhwEeqw2aIxlm854Q" to="_o3100GhyEeqw2aIxlm854Q"/>
+  <transitions xmi:id="_uSYx8GhyEeqw2aIxlm854Q" from="_o3100GhyEeqw2aIxlm854Q" to="_k7qTIGhyEeqw2aIxlm854Q"/>
+</flowchart:Model>
