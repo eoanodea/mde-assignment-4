@@ -3,23 +3,28 @@ package flowchart;
 
 class Entity {
 	attr String name;
+	ref Feature#entities features;
 }
 
 abstract class Feature {
-	!ordered ref Entity[*] entity;
+	ref Entity#features entities;
 }
 
 class Attribute extends Feature {
-	attr String name;
+	attr DataType type;
+	attr Boolean isPrimaryKey;
 }
 
 class Reference extends Feature {
+	!ordered ref Entity[*] entity;
 }
 
 class Page {
 
 	@"http://www.eclipse.org/OCL/Collection"(nullFree="false")
 	!ordered val Content[*]#page contents;
+	attr String url;
+	!ordered ref Page[*] pages;
 }
 
 abstract class Content {
@@ -34,8 +39,26 @@ class Static_Content extends Content {
 }
 
 class Index extends D_Content {
+
+	@"http://www.eclipse.org/OCL/Collection"(nullFree="false")
+	!ordered val Individual[*]#index individuals;
 }
 
-class Individual extends D_Content {
+class Individual {
+	attr EBigInteger identifier;
+	ref Index#individuals index;
+}
+
+enum DataType {
+	int = 0;
+	string = 1;
+	text = 2;
+	bool = 3;
+	date = 4;
+	file = 5;
+	currency = 6;
+	percent = 7;
+	image = 8;
+	images = 9;
 }
 

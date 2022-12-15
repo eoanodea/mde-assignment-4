@@ -3,15 +3,21 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="flowchart" nsURI="flwochart" nsPrefix="flowchart">
   <eClassifiers xsi:type="ecore:EClass" name="Entity">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="features" eType="#//Feature"
+        eOpposite="#//Feature/entities"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Feature" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="entities" eType="#//Entity"
+        eOpposite="#//Entity/features"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Attribute" eSuperTypes="#//Feature">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//DataType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isPrimaryKey" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Reference" eSuperTypes="#//Feature">
     <eStructuralFeatures xsi:type="ecore:EReference" name="entity" ordered="false"
         upperBound="-1" eType="#//Entity"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Attribute" eSuperTypes="#//Feature">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Reference" eSuperTypes="#//Feature"/>
   <eClassifiers xsi:type="ecore:EClass" name="Page">
     <eStructuralFeatures xsi:type="ecore:EReference" name="contents" ordered="false"
         upperBound="-1" eType="#//Content" containment="true" eOpposite="#//Content/page">
@@ -19,6 +25,9 @@
         <details key="nullFree" value="false"/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="url" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="pages" ordered="false"
+        upperBound="-1" eType="#//Page"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Content" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EReference" name="page" eType="#//Page" eOpposite="#//Page/contents"/>
@@ -28,6 +37,29 @@
         upperBound="-1" eType="#//Entity"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Static_Content" eSuperTypes="#//Content"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Index" eSuperTypes="#//D_Content"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Individual" eSuperTypes="#//D_Content"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Index" eSuperTypes="#//D_Content">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="individuals" ordered="false"
+        upperBound="-1" eType="#//Individual" containment="true" eOpposite="#//Individual/index">
+      <eAnnotations source="http://www.eclipse.org/OCL/Collection">
+        <details key="nullFree" value="false"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Individual">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="identifier" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBigInteger"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="index" eType="#//Index"
+        eOpposite="#//Index/individuals"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="DataType">
+    <eLiterals name="int"/>
+    <eLiterals name="string" value="1"/>
+    <eLiterals name="text" value="2"/>
+    <eLiterals name="bool" value="3"/>
+    <eLiterals name="date" value="4"/>
+    <eLiterals name="file" value="5"/>
+    <eLiterals name="currency" value="6"/>
+    <eLiterals name="percent" value="7"/>
+    <eLiterals name="image" value="8"/>
+    <eLiterals name="images" value="9"/>
+  </eClassifiers>
 </ecore:EPackage>
