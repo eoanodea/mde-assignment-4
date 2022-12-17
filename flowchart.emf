@@ -1,24 +1,38 @@
+@Ecore(invocationDelegates="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", settingDelegates="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", validationDelegates="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot")
 @namespace(uri="flwochart", prefix="flowchart")
 package flowchart;
 
+class System {
+	val Entity[*] entities;
+	val Page[*] pages;
+}
+
+@Ecore(constraints="containsPK")
+@"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"(containsPK="features->select(isPrimaryKey=true)->size()>0")
 class Entity {
 	attr String name;
-	ref Feature#entities features;
+	!ordered ref Feature[+]#entities features;
 }
 
 abstract class Feature {
 	ref Entity#features entities;
+	attr boolean[1] isPrimaryKey;
 }
 
 class Attribute extends Feature {
 	attr DataType type;
-	attr Boolean isPrimaryKey;
 }
 
 class Reference extends Feature {
 	!ordered ref Entity[*] entity;
 }
 
+@Ecore(constraints="UrlContains")
+@"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"(UrlContains="Tuple {
+	message : String = 'expected a @',
+	status : Boolean = 
+		url = Sequence{1..self.url.size()}->exists(i | self.url.substring(i, i) = '@')
+}.status")
 class Page {
 
 	@"http://www.eclipse.org/OCL/Collection"(nullFree="false")
@@ -27,7 +41,7 @@ class Page {
 	!ordered ref Page[*] pages;
 }
 
-abstract class Content{
+abstract class Content {
 	ref Page#contents page;
 }
 
@@ -44,6 +58,12 @@ class Index extends D_Content {
 	!ordered val Individual[*]#index individuals;
 }
 
+@Ecore(constraints="IdentifierIsNotZero")
+@"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"(IdentifierIsNotZero="Tuple {
+	message : String = 'Identifier cannot be 0',
+	status : Boolean = 
+			self.identifier > 0
+}.status")
 class Individual {
 	attr EBigInteger identifier;
 	ref Index#individuals index;
