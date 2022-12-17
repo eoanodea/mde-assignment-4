@@ -27,7 +27,7 @@ class Page {
 	!ordered ref Page[*] pages;
 }
 
-abstract class Content {
+abstract class Content{
 	ref Page#contents page;
 }
 

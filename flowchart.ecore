@@ -24,6 +24,12 @@
         upperBound="-1" eType="#//Entity"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Page">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="UrlContains"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="UrlContains" value="Tuple {&#xA;&#x9;message : String = 'expected a @',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;url = self.url.contains('@')&#xA;}.status"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="contents" ordered="false"
         upperBound="-1" eType="#//Content" containment="true" eOpposite="#//Content/page">
       <eAnnotations source="http://www.eclipse.org/OCL/Collection">

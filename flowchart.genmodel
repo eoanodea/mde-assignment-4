@@ -6,12 +6,50 @@
     operationReflection="true" importOrganizing="true">
   <foreignModel>flowchart.ecore</foreignModel>
   <genPackages prefix="Flowchart" disposableProviderFactory="true" ecorePackage="flowchart.ecore#/">
-    <genClasses ecoreClass="flowchart.ecore#//Entity"/>
-    <genClasses image="false" ecoreClass="flowchart.ecore#//Feature">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute flowchart.ecore#//Feature/feature_name"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference flowchart.ecore#//Feature/entity"/>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="flowchart.ecore#//DataType">
+      <genEnumLiterals ecoreEnumLiteral="flowchart.ecore#//DataType/int"/>
+      <genEnumLiterals ecoreEnumLiteral="flowchart.ecore#//DataType/string"/>
+      <genEnumLiterals ecoreEnumLiteral="flowchart.ecore#//DataType/text"/>
+      <genEnumLiterals ecoreEnumLiteral="flowchart.ecore#//DataType/bool"/>
+      <genEnumLiterals ecoreEnumLiteral="flowchart.ecore#//DataType/date"/>
+      <genEnumLiterals ecoreEnumLiteral="flowchart.ecore#//DataType/file"/>
+      <genEnumLiterals ecoreEnumLiteral="flowchart.ecore#//DataType/currency"/>
+      <genEnumLiterals ecoreEnumLiteral="flowchart.ecore#//DataType/percent"/>
+      <genEnumLiterals ecoreEnumLiteral="flowchart.ecore#//DataType/image"/>
+      <genEnumLiterals ecoreEnumLiteral="flowchart.ecore#//DataType/images"/>
+    </genEnums>
+    <genClasses ecoreClass="flowchart.ecore#//Entity">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute flowchart.ecore#//Entity/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference flowchart.ecore#//Entity/features"/>
     </genClasses>
-    <genClasses ecoreClass="flowchart.ecore#//Attribute"/>
-    <genClasses ecoreClass="flowchart.ecore#//Reference"/>
+    <genClasses image="false" ecoreClass="flowchart.ecore#//Feature">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference flowchart.ecore#//Feature/entities"/>
+    </genClasses>
+    <genClasses ecoreClass="flowchart.ecore#//Attribute">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute flowchart.ecore#//Attribute/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute flowchart.ecore#//Attribute/isPrimaryKey"/>
+    </genClasses>
+    <genClasses ecoreClass="flowchart.ecore#//Reference">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference flowchart.ecore#//Reference/entity"/>
+    </genClasses>
+    <genClasses ecoreClass="flowchart.ecore#//Page">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference flowchart.ecore#//Page/contents"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute flowchart.ecore#//Page/url"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference flowchart.ecore#//Page/pages"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="flowchart.ecore#//Content">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference flowchart.ecore#//Content/page"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="flowchart.ecore#//D_Content">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference flowchart.ecore#//D_Content/entity"/>
+    </genClasses>
+    <genClasses ecoreClass="flowchart.ecore#//Static_Content"/>
+    <genClasses ecoreClass="flowchart.ecore#//Index">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference flowchart.ecore#//Index/individuals"/>
+    </genClasses>
+    <genClasses ecoreClass="flowchart.ecore#//Individual">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute flowchart.ecore#//Individual/identifier"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference flowchart.ecore#//Individual/index"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>
