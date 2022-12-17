@@ -1,3 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<flowchart:System xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:flowchart="flwochart" xsi:schemaLocation="flwochart flowchart.ecore"/>
+<flowchart:System
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:flowchart="flwochart"
+    xsi:schemaLocation="flwochart flowchart.ecore"
+    name="system">
+  <entities
+      name="Entity">
+    <features
+        xsi:type="flowchart:Attribute"
+        name="random_name"
+        isPrimaryKey="true"/>
+  </entities>
+  <pages url="happy_page.com">
+    <contents
+        xsi:type="flowchart:Static_Content"
+        name="really_sad_static_content"
+        identifier="45"/>
+  </pages>
+</flowchart:System>

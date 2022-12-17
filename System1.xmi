@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flowchart:System
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:flowchart="flwochart"
+    xsi:schemaLocation="flwochart flowchart.ecore"
+    name="cool_system">
+  <entities
+      name="cool_entity">
+    <features
+        xsi:type="flowchart:Attribute"
+        name="cool_attribute"
+        isPrimaryKey="true"/>
+    <features
+        xsi:type="flowchart:Reference"
+        name="ref"
+        ref="//@entities.1"/>
+  </entities>
+  <entities
+      name="Sad_entity">
+    <features
+        xsi:type="flowchart:Attribute"
+        name="Happy_entity"
+        isPrimaryKey="true"/>
+  </entities>
+  <pages url="I_hate_eclipse.com">
+    <contents
+        xsi:type="flowchart:Index"
+        name="cool_index"
+        entity="//@entities.0">
+      <individuals
+          identifier="45"/>
+    </contents>
+  </pages>
+</flowchart:System>

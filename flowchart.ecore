@@ -27,7 +27,7 @@
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="pages" upperBound="-1"
-        eType="#//Page" volatile="true" containment="true">
+        eType="#//Page" containment="true">
       <eAnnotations source="http://www.eclipse.org/OCL/Collection">
         <details key="nullFree" value="false"/>
       </eAnnotations>
@@ -42,17 +42,6 @@
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="features" lowerBound="1"
         upperBound="-1" eType="#//Feature" containment="true">
-      <eAnnotations source="http://www.eclipse.org/OCL/Collection">
-        <details key="nullFree" value="false"/>
-      </eAnnotations>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="system" eType="#//System"
-        eOpposite="#//System/entities"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="pages" upperBound="-1"
-        eType="#//Page" derived="true" containment="true" eOpposite="#//Page/entities">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="derivation" value="system.pages->asOrderedSet()"/>
-      </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/OCL/Collection">
         <details key="nullFree" value="false"/>
       </eAnnotations>
@@ -78,14 +67,10 @@
       <details key="constraints" value="UrlContains"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-      <details key="UrlContains" value="Tuple {&#xA;&#x9;message : String = 'expected a @',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;Sequence{1..self.url.size()}->exists(i | self.url.substring(i, i) = '@')&#xA;}.status"/>
+      <details key="UrlContains" value="Tuple {&#xA;&#x9;message : String = 'expected a .',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;Sequence{1..self.url.size()}->exists(i | self.url.substring(i, i) = '.')&#xA;}.status"/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="system" eType="#//System"
-        eOpposite="#//System/pages"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="entities" eType="#//Entity"
-        eOpposite="#//Entity/pages"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="contents" ordered="false"
-        lowerBound="1" upperBound="-1" eType="#//Content" containment="true" eOpposite="#//Content/page">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="contents" lowerBound="1"
+        upperBound="-1" eType="#//Content" containment="true">
       <eAnnotations source="http://www.eclipse.org/OCL/Collection">
         <details key="nullFree" value="false"/>
       </eAnnotations>
@@ -94,17 +79,23 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="pages" ordered="false"
         upperBound="-1" eType="#//Page"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Content" abstract="true" eSuperTypes="#//Named">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="page" eType="#//Page" eOpposite="#//Page/contents"/>
-  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Content" abstract="true" eSuperTypes="#//Named"/>
   <eClassifiers xsi:type="ecore:EClass" name="D_Content" abstract="true" eSuperTypes="#//Content">
     <eStructuralFeatures xsi:type="ecore:EReference" name="entity" ordered="false"
-        upperBound="-1" eType="#//Entity"/>
+        lowerBound="1" upperBound="-1" eType="#//Entity">
+      <eAnnotations source="http://www.eclipse.org/OCL/Collection">
+        <details key="nullFree" value="false"/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Static_Content" eSuperTypes="#//Content"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Static_Content" eSuperTypes="#//Content">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="identifier" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBigInteger"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="#//DataType"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Index" eSuperTypes="#//D_Content">
     <eStructuralFeatures xsi:type="ecore:EReference" name="individuals" ordered="false"
-        upperBound="-1" eType="#//Individual" containment="true">
+        lowerBound="1" upperBound="-1" eType="#//Individual" containment="true">
       <eAnnotations source="http://www.eclipse.org/OCL/Collection">
         <details key="nullFree" value="false"/>
       </eAnnotations>
