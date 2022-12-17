@@ -7,6 +7,12 @@
     <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
   </eAnnotations>
   <eClassifiers xsi:type="ecore:EClass" name="Entity">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="NameIsAtLeast3Characters"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="NameIsAtLeast3Characters" value="Tuple {&#xA;&#x9;message : String = 'Name must be at least 3 characters',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;&#x9;name = self.name.size() > 3&#xA;}.status"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="features" eType="#//Feature"
         eOpposite="#//Feature/entities"/>
@@ -20,6 +26,12 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isPrimaryKey" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Reference" eSuperTypes="#//Feature">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="uniqueEntityNames"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="uniqueEntityNames" value="entity.name->asSet()->size() = entity->size()"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="entity" ordered="false"
         upperBound="-1" eType="#//Entity"/>
   </eClassifiers>
@@ -28,7 +40,7 @@
       <details key="constraints" value="UrlContains"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-      <details key="UrlContains" value="Tuple {&#xA;&#x9;message : String = 'expected a @',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;url = Sequence{1..self.url.size()}->exists(i | self.url.substring(i, i) = '@')&#xA;}.status"/>
+      <details key="UrlContains" value="Tuple {&#xA;&#x9;message : String = 'expected a @',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;&#x9;url = Sequence{1..self.url.size()}->exists(i | self.url.substring(i, i) = '@')&#xA;}.status"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="contents" ordered="false"
         upperBound="-1" eType="#//Content" containment="true" eOpposite="#//Content/page">
@@ -61,7 +73,7 @@
       <details key="constraints" value="IdentifierIsNotZero"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-      <details key="IdentifierIsNotZero" value="Tuple {&#xA;&#x9;message : String = 'Identifier cannot be 0',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;&#x9;self.identifier > 0&#xA;}.status"/>
+      <details key="IdentifierIsNotZero" value="Tuple {&#xA;&#x9;message : String = 'Identifier cannot be 0',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;&#x9;identifier = self.identifier > 0&#xA;}.status"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="identifier" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBigInteger"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="index" eType="#//Index"
